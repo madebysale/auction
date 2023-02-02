@@ -36,17 +36,17 @@ exports.addbid = async (req, res, next) => {
     var initial_bid = Number(req.body.initial_bid);
     var current_bid = Number(req.body.current_bid);
     var last_bid = Number(req.body.last_bid);
-    var occasion_id = Number(req.body.occasion_id);
+    var auction_id = Number(req.body.auction_id);
     var category_id = Number(req.body.category_id);
 
 
       const [rows] = await 
-      conn.execute('INSERT INTO `bid`(initial_bid,current_bid,last_bid,last_biding_time,occasion_id,category_id,bid_by,bid_to) VALUES(?,?,?,?,?,?,?,?)',[
+      conn.execute('INSERT INTO `bid`(initial_bid,current_bid,last_bid,last_biding_time,auction_id,category_id,bid_by,bid_to) VALUES(?,?,?,?,?,?,?,?)',[
           initial_bid,
           current_bid,
            last_bid,
           last_biding_time,
-          occasion_id,
+          auction_id,
           category_id,
           req.body.bid_by,
           req.body.bid_to

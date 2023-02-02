@@ -17,7 +17,7 @@ exports.addauction = async (req, res, next) => {
     try{
 
         const [row] = await conn.execute(
-            "SELECT * FROM `auction` WHERE name=?&& discription=?&& userid =?",
+            "SELECT * FROM `auction_table` WHERE name=?&& discription=?&& userid =?",
             [req.body.name,req.body.discription,req.body.userid]
           );
           
@@ -50,7 +50,7 @@ exports.addauction = async (req, res, next) => {
 
 
 
-        const [rows] = await conn.execute("INSERT INTO  auction (name,discription,startingBid,Bid_start_time,BId_end_time,category_id,category_name,Detail,createdDate,updatedDate,userid) VALUES(?,?,?,?,?,?,?,?,?,?,?)",
+        const [rows] = await conn.execute("INSERT INTO  auction_table (name,discription,startingBid,Bid_start_time,BId_end_time,category_id,category_name,Detail,createdDate,updatedDate,userid) VALUES(?,?,?,?,?,?,?,?,?,?,?)",
           [
             req.body.name,
         

@@ -35,13 +35,14 @@ exports.addcategory = async (req, res, next) => {
     var mydate1 = new Date(req.body.updatedDate);
 
 
-      const [rows] = await conn.execute('INSERT INTO `category`(`name`,`type`,`category_status`,`createdDate`,`updatedDate`) VALUES(?,?,?,?,?)',[
+      const [rows] = await conn.execute('INSERT INTO `category`(`name`,`type`,`category_status`,`createdDate`,`updatedDate`,`category_image`) VALUES(?,?,?,?,?,?)',[
           req.body.name,
           req.body.type,
 
           req.body.category_status,
           mydate,
-          mydate1
+          mydate1,
+          req.body.category_image
           
           
          

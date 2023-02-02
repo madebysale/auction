@@ -6,7 +6,7 @@ exports.listauction = async (req, res, next) => {
      try{
       
       const [row]= await conn.execute(
-        "SELECT * FROM auction ",
+        "SELECT * FROM auction_table ",
         
         
       );

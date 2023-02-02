@@ -6,7 +6,7 @@ exports.getauction= async (req, res, next) => {
      try{
       
       const [row]= await conn.execute(
-        "SELECT * FROM auction WHERE name=? ||userid=?", 
+        "SELECT * FROM auction_table WHERE name=? ||userid=?", 
         [req.body.name,req.body.userid]
         
       );
