@@ -1,6 +1,6 @@
 const mysql = require("mysql2");
-const multer =require('multer');
-const upload = multer({dest:'uploads/'})
+// const multer =require('multer');
+// const upload = multer({dest:'uploads/'})
 
 
 const db_connection = mysql

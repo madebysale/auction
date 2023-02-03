@@ -5,7 +5,7 @@ const conn = require("../db_conncetion").promise();
 exports.upcomingauctionlist = async(req,res,next)=>{
 
 if(req.body.Bid_start_time===""){
-    res.send("give date")
+    res.send({message:"give date"})
 }
 
 else{
@@ -18,7 +18,8 @@ else{
    console.log(row)
 
    if(row.length ==0){
-    res.send("not available")
+    res.send(
+        {message:"not available"})
    }
 
 
@@ -26,13 +27,14 @@ else{
 
 
     else{
-        // console.log(row[0].id)
+        
         const[row]=await conn.execute(
-            'select * FROM auction_table WHERE Bid_start_time > \"'+req.body.Bid_start_time+'\"'
+            'select * FROM auction_table WHERE Bid_start_time >\"'+req.body.Bid_start_time+'\"'
             // [
             //     req.body.Bid_start_time
             // ]
         )
+        console.log(row[0].id)
         res.send(row)
     }
 

@@ -48,7 +48,11 @@ const{mylistcategory} =require('./controller/mylistcategory');
 const{upcomingauctionlist} = require('./controller/upcomingauctionlist')
 
 
-const{rating}=require('./controller/rating')
+const{rating}=require('./controller/rating');
+
+const{ratingjoinuser}= require('./controller/ratingjoinuser');
+
+const{listrating}=require('./controller/listrating')
 
 
 
@@ -145,5 +149,9 @@ router.post('/upcomingauctionlist',upcomingauctionlist)
 
 
 router.post('/rating',rating)
+
+router.post('/ratingjoinuser',ratingjoinuser)
+
+router.post('/listrating',listrating)
 
 module.exports = router;

@@ -12,7 +12,7 @@ else{
   
     const[row] = await conn.execute(
         'SELECT * FROM auction_table WHERE BId_end_time =?',
-        [req.body.Bid_start_time]
+        [req.body.BId_end_time]
         
     )
    console.log(row)
@@ -28,7 +28,7 @@ else{
     else{
         // console.log(row[0].id)
         const[row]=await conn.execute(
-            'select * FROM auction_table WHERE BId_end_time >\"'+req.body.Bid_start_time+'\"'
+            'select * FROM auction_table WHERE BId_end_time >\"'+req.body.BId_end_time+'\"'
             // [
             //     req.body.Bid_start_time
             // ]
