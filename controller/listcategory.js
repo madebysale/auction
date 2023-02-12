@@ -6,7 +6,7 @@ exports.listcategory = async (req, res, next) => {
      try{
       
       const [row]= await conn.execute(
-        "SELECT * FROM category",
+        "SELECT * FROM category LIMIT 6",
     
         
       );

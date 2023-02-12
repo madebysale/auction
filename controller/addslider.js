@@ -10,54 +10,71 @@ var storage = multer.diskStorage({
   filename: function (req, file, cb) {
     let extArray = file.mimetype.split("/");
     let extension = extArray[extArray.length - 1];
-    cb(null,'image'+'.'+extension)
+   return  cb(null,`${'image'}${Date.now()}${'.'}${extension}`)
   }
+  
 })
-
 var uploadSingle = multer({ storage: storage }).any();
 
-var mobileimage = "";
-exports.addslider =  async (req, res, next) => {
+
+ exports.addslider =  async (req, res, next) => {
+  uploadSingle(req, res, function (err) {
   try {
 
-   
- uploadSingle(req, res, function (err) {
-  var mobileimage = "";
+      var mobileimage = "";
+
+  
 
       if (req.files) {
-
-     for (i = 0; i < req.files.length; i++) {
+      
+        for (i = 0; i < req.files.length; i++) {
           if (req.files[i].fieldname == 'image') {
             mobileimage = (req.files[i].filename);
+                                                      
           }
         }
       }
-      
-  
 
+      console.log(mobileimage)
       if (err) {
         res.json({ error_code: 1, err_desc: err });
       }
-    });
-    console.log(req.body)
-    const [rows] = await conn.execute('INSERT INTO home_slider (image,discription,linked,title) VALUES(?,?,?,?)',[
-        mobileimage,
-        req.body.discription,
-        req.body.linked,
-        req.body.title
        
 
-      ]);
-
-      
+    
+                      
+    
   
 
-    res.send({
-      message: "slider added successfully",
-      
-    });
-  } catch (err) {
+     
+
+    
+   if(mobileimage){
+     conn.execute( 'INSERT INTO home_slider (title,discription,linked,image) VALUES(?,?,?,?)',
+      [
+      req.body.title,
+      req.body.discription,
+      req.body.linked,
+      mobileimage
+      ]
+    ).then(responce=>{
+      res.send({
+        data:responce,
+        message: "slider added successfully",
+         
+      });
+    })
+      console.log(req.body.linked)
+  
+    
+    
+   }
+    
+  } 
+  catch (err) 
+  {
     next(err);
     console.log(err)
   }
+});
 };

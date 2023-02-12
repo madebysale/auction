@@ -29,30 +29,32 @@ const{listcategory}= require('./controller/listcategory');
 
 
 const{addslider}=require('./controller/addslider');
-const{listslider} = require('./controller/listslider')
-const{deleteslider} =require('./controller/deleteslider')
-const{updateslider} =require('./controller/updateslider')
+const{listslider} = require('./controller/listslider');
+const{deleteslider} =require('./controller/deleteslider');
+const{updateslider} =require('./controller/updateslider');
 
 
-const{mybid} = require('./controller/mybid')
+const{mybid} = require('./controller/mybid');
 
 
-const{join}=require('./controller/join')
+const{join}=require('./controller/join');
 
-const{currentauctionlist}=require('./controller/currentauctionlist')
+const{currentauctionlist}=require('./controller/currentauctionlist');
 
 
 const{mylistcategory} =require('./controller/mylistcategory');
 
 
-const{upcomingauctionlist} = require('./controller/upcomingauctionlist')
+const{upcomingauctionlist} = require('./controller/upcomingauctionlist');
 
 
 const{rating}=require('./controller/rating');
 
 const{ratingjoinuser}= require('./controller/ratingjoinuser');
 
-const{listrating}=require('./controller/listrating')
+const{listrating}=require('./controller/listrating');
+
+const{auctiondetail} = require('./controller/auctiondetail')
 
 
 
@@ -153,5 +155,6 @@ router.post('/rating',rating)
 router.post('/ratingjoinuser',ratingjoinuser)
 
 router.post('/listrating',listrating)
+router.post('/auctiondetail',auctiondetail)
 
 module.exports = router;

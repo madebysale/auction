@@ -25,18 +25,18 @@ exports.addcategory = async (req, res, next) => {
 
       console.log(req.body);
       console.log(icon);
-       conn.execute(
-        "SELECT * FROM `category` WHERE name=? && type =?",
-        [req.body.name, req.body.type]
-      )
+      conn.execute("SELECT * FROM `category` WHERE name=? && type =?", [
+        req.body.name,
+        req.body.type,
+      ]);
 
-    //   if (row.length > 0) {
-    //     console.log(row[0].name);
-    //     console.log(row[0].type);
-    //     return res.status(201).json({
-    //       message: "The name & type already in use",
-    //     });
-    //   }
+      //   if (row.length > 0) {
+      //     console.log(row[0].name);
+      //     console.log(row[0].type);
+      //     return res.status(201).json({
+      //       message: "The name & type already in use",
+      //     });
+      //   }
 
       var icon = "";
       if (req.files) {
@@ -69,14 +69,57 @@ exports.addcategory = async (req, res, next) => {
         ]
       );
 
-    
-         res.status(201).json({
-          message: "The user has been successfully inserted.",
-        });
-    
+      res.status(201).json({
+        message: "The user has been successfully inserted.",
+      });
     } catch (err) {
       next(err);
       console.log(err);
     }
   });
+};
+
+exports.getcategory = async (req, res, next) => {
+  try {
+    const [row] = await conn.execute("SELECT * FROM category WHERE name =?", [
+      req.body.name,
+    ]);
+    if (req.body.name === "") {
+      return res.json({
+        message: "give category name",
+      });
+    } else if (row.length == 0) {
+      res.send({
+        message: "inavild category name",
+      });
+    } else {
+      res.send(row);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.listcategory = async (req, res, next) => {
+  try {
+    const [row] = await conn.execute("SELECT * FROM category LIMIT 6");
+
+    res.send(row);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const conn = require("../db_conncetion").promise();
+
+exports.mylistcategory = async (req, res, next) => {
+  try {
+    const [row] = await conn.execute(
+      "select * FROM category  LEFT JOIN auction_table ON category.id = auction_table.id ORDER BY category.id"
+    );
+
+    res.send(row);
+  } catch (err) {
+    next(err);
+  }
 };

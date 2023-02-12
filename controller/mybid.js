@@ -5,7 +5,7 @@ exports.mybid = async (req, res, next) => {
 
     try{
         const [row]= await conn.execute(
-            "select * from bid INNER JOIN auction_table ON bid.auction_id=auction_table.id INNER JOIN user ON bid.bid_to = user.id AND bid.bid_by = user.id ORDER BY bid.id"
+            "select * from bid LEFT JOIN auction_table ON bid.auction_id=auction_table.id LEFT JOIN user on bid.bid_to = user.id ORDER by bid.id LIMIT 5"
             );
           res.send(row)
 

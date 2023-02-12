@@ -17,7 +17,7 @@ else{
     )
    console.log(row)
 
-   if(row.length ==0){
+   if(row.length == 0){
     res.send(
         {message:"not available"})
    }
@@ -29,12 +29,12 @@ else{
     else{
         
         const[row]=await conn.execute(
-            'select * FROM auction_table WHERE Bid_start_time >\"'+req.body.Bid_start_time+'\"'
+            'select * FROM auction_table WHERE Bid_start_time > \"'+req.body.Bid_start_time+'\"'
             // [
             //     req.body.Bid_start_time
             // ]
         )
-        console.log(row[0].id)
+        // console.log(row[0].id)
         res.send(row)
     }
 
